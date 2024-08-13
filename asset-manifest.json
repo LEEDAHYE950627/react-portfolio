@@ -1,22 +1,18 @@
 {
   "files": {
     "main.css": "/react-portfolio/static/css/main.e916f8aa.css",
-    "main.js": "/react-portfolio/static/js/main.3fd852b7.js",
-    "static/media/teacher.png": "/react-portfolio/static/media/teacher.b2a9820ec88d806600ee.png",
-    "static/media/sgi.png": "/react-portfolio/static/media/sgi.9f9f36eeaa73bf6fa3ad.png",
-    "static/media/samsung.png": "/react-portfolio/static/media/samsung.d4f43d810bf220c8be8c.png",
+    "main.js": "/react-portfolio/static/js/main.ce3f7e2e.js",
     "static/media/img_main.jpg": "/react-portfolio/static/media/img_main.4774019141870d548f82.jpg",
-    "static/media/welrix.png": "/react-portfolio/static/media/welrix.ec46fda91eded7b620c1.png",
+    "static/media/teacher.png": "/react-portfolio/static/media/teacher.b72de541cf582eee7a3a.png",
     "static/media/monimo.png": "/react-portfolio/static/media/monimo.0490ebfa2a2362095567.png",
-    "static/media/shinhan.png": "/react-portfolio/static/media/shinhan.0cd604251485fefd560c.png",
-    "static/media/police.png": "/react-portfolio/static/media/police.3039f2bf3de419434190.png",
-    "static/media/mono.png": "/react-portfolio/static/media/mono.44b2899cb051a96f2d5a.png",
+    "static/media/sgi.png": "/react-portfolio/static/media/sgi.7025cfbd44a627b8a3d1.png",
+    "static/media/samsung.png": "/react-portfolio/static/media/samsung.1c2b61a336d52d6f15c4.png",
     "index.html": "/react-portfolio/index.html",
     "main.e916f8aa.css.map": "/react-portfolio/static/css/main.e916f8aa.css.map",
-    "main.3fd852b7.js.map": "/react-portfolio/static/js/main.3fd852b7.js.map"
+    "main.ce3f7e2e.js.map": "/react-portfolio/static/js/main.ce3f7e2e.js.map"
   },
   "entrypoints": [
     "static/css/main.e916f8aa.css",
-    "static/js/main.3fd852b7.js"
+    "static/js/main.ce3f7e2e.js"
   ]
 }
