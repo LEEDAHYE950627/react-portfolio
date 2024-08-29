@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/react-portfolio/static/css/main.7c277c97.css",
-    "main.js": "/react-portfolio/static/js/main.a219190b.js",
+    "main.css": "/react-portfolio/static/css/main.f2ca4584.css",
+    "main.js": "/react-portfolio/static/js/main.2fcb4eb8.js",
     "static/media/SpoqaHanSansNeo-Light.ttf": "/react-portfolio/static/media/SpoqaHanSansNeo-Light.008270707379c4b4bc51.ttf",
     "static/media/SpoqaHanSansNeo-Medium.ttf": "/react-portfolio/static/media/SpoqaHanSansNeo-Medium.cf5c6ddcaec3f59a13c7.ttf",
     "static/media/SpoqaHanSansNeo-Bold.ttf": "/react-portfolio/static/media/SpoqaHanSansNeo-Bold.9a610369db9d3c28b99f.ttf",
@@ -23,11 +23,11 @@
     "static/media/TestNational2-Medium.otf": "/react-portfolio/static/media/TestNational2-Medium.3555d6515e049eeac557.otf",
     "static/media/TestNational2-Regular.otf": "/react-portfolio/static/media/TestNational2-Regular.7dbe0ab983b1ee339a70.otf",
     "index.html": "/react-portfolio/index.html",
-    "main.7c277c97.css.map": "/react-portfolio/static/css/main.7c277c97.css.map",
-    "main.a219190b.js.map": "/react-portfolio/static/js/main.a219190b.js.map"
+    "main.f2ca4584.css.map": "/react-portfolio/static/css/main.f2ca4584.css.map",
+    "main.2fcb4eb8.js.map": "/react-portfolio/static/js/main.2fcb4eb8.js.map"
   },
   "entrypoints": [
-    "static/css/main.7c277c97.css",
-    "static/js/main.a219190b.js"
+    "static/css/main.f2ca4584.css",
+    "static/js/main.2fcb4eb8.js"
   ]
 }
