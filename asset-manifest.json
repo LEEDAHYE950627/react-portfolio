@@ -1,7 +1,8 @@
 {
   "files": {
     "main.css": "/react-portfolio/static/css/main.83c403f4.css",
-    "main.js": "/react-portfolio/static/js/main.d54f3f82.js",
+    "main.js": "/react-portfolio/static/js/main.82512a1d.js",
+    "static/media/img_main.png": "/react-portfolio/static/media/img_main.95104ccfc92a7eb19782.png",
     "static/media/SpoqaHanSansNeo-Light.ttf": "/react-portfolio/static/media/SpoqaHanSansNeo-Light.008270707379c4b4bc51.ttf",
     "static/media/SpoqaHanSansNeo-Medium.ttf": "/react-portfolio/static/media/SpoqaHanSansNeo-Medium.cf5c6ddcaec3f59a13c7.ttf",
     "static/media/SpoqaHanSansNeo-Bold.ttf": "/react-portfolio/static/media/SpoqaHanSansNeo-Bold.9a610369db9d3c28b99f.ttf",
@@ -14,7 +15,6 @@
     "static/media/SpoqaHanSansNeo-Bold.woff2": "/react-portfolio/static/media/SpoqaHanSansNeo-Bold.1db18034ccc384032a4a.woff2",
     "static/media/SpoqaHanSansNeo-Medium.woff2": "/react-portfolio/static/media/SpoqaHanSansNeo-Medium.8589927a4fa35d637a8d.woff2",
     "static/media/SpoqaHanSansNeo-Light.woff2": "/react-portfolio/static/media/SpoqaHanSansNeo-Light.13ba65ce1663198528ba.woff2",
-    "static/media/img_main.jpg": "/react-portfolio/static/media/img_main.4774019141870d548f82.jpg",
     "static/media/teacher.png": "/react-portfolio/static/media/teacher.4a62958608d1d25d5381.png",
     "static/media/monimo.png": "/react-portfolio/static/media/monimo.0490ebfa2a2362095567.png",
     "static/media/samsung.png": "/react-portfolio/static/media/samsung.1c2b61a336d52d6f15c4.png",
@@ -24,10 +24,10 @@
     "static/media/TestNational2-Regular.otf": "/react-portfolio/static/media/TestNational2-Regular.7dbe0ab983b1ee339a70.otf",
     "index.html": "/react-portfolio/index.html",
     "main.83c403f4.css.map": "/react-portfolio/static/css/main.83c403f4.css.map",
-    "main.d54f3f82.js.map": "/react-portfolio/static/js/main.d54f3f82.js.map"
+    "main.82512a1d.js.map": "/react-portfolio/static/js/main.82512a1d.js.map"
   },
   "entrypoints": [
     "static/css/main.83c403f4.css",
-    "static/js/main.d54f3f82.js"
+    "static/js/main.82512a1d.js"
   ]
 }
