@@ -21,12 +21,13 @@
     "typescript": "^4.9.5",
     "web-vitals": "^2.1.4"
   },
-  "homepage": "https://leedahye950627.github.io/react-portfolio/",
+  "homepage": "https://LEEDAHYE950627.github.io/react-portfolio/",
   "scripts": {
     "start": "craco start",
     "build": "craco build",
     "test": "craco test",
     "eject": "craco eject",
+    "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
   "eslintConfig": {

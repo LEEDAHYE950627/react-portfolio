@@ -12,7 +12,11 @@ const AboutCompWrap = () => {
 							<div className="icon" aria-hidden={true}>
 								<i className="fa-solid fa-building"></i>
 							</div>
-							<span className="period">{ data.period }{' '}({ data.years })</span>
+							<span className="period">{ data.period }{' '}
+								{
+									data.years !== "" && data.years !== undefined ? `(${ data.years })` : ""
+								}
+							</span>
 							<Heading level="4">
 								{ data.label }
 								<span className="job">{ data.job }</span>
