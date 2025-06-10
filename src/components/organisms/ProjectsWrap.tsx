@@ -108,12 +108,8 @@ const ProjectsWrap = () => {
 									}
 								</ul>
 								<button type="button" 
-									className={`btn-open ${activeButton === idx ? 'on' : ''}`}
+									className={'btn-open'}
 									aria-label={`${data.name} 상세보기`}
-									onMouseEnter={() => setActiveButton(idx)}
-									onMouseLeave={() => setActiveButton(null)}
-									onFocus={() => setActiveButton(idx)}
-									onBlur={() => setActiveButton(null)}
 								>
 								</button>
 							</div>
@@ -251,7 +247,7 @@ const ProjectsWrapStyled = styled.div`
 					right: 0;
 				}
 
-				&.on {
+				&:hover {
 					transition: all 0.2s ease-out 0.4s;
 	
 					&:before {
