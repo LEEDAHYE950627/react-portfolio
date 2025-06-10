@@ -247,7 +247,7 @@ const ProjectsWrapStyled = styled.div`
 					right: 0;
 				}
 
-				&:hover {
+				&:hover, &:focus {
 					transition: all 0.2s ease-out 0.4s;
 	
 					&:before {
