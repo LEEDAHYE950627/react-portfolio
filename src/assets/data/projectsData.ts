@@ -56,7 +56,7 @@ const projectsData = {
 			period: "2023.11.01 ~ 2024.03.08",
 			month: "4개월",
 			desc: "웹 접근성 가이드를 준수하여 기존 삼성생명 WEB, 모바일 WEB 일부 메뉴의 고도화 및 모니모(모바일 APP) 구축을 기존 1, 2차에 이어 3차를 진행하였습니다. 기존 가이드를 사용하는 고도화 되지 않은 메뉴들이 있었기에 최대한 영향이 가지 않도록 수정하고 여러 가지를 고심하며 작업하였습니다.",
-			skill: ["Vue.js", "Html & SCSS","JavaScript"],
+			skill: ["Vue", "Html & SCSS","JavaScript"],
 			company: "㈜퓨즈",
 			img: "samsung",
 			work: [
