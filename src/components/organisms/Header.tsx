@@ -6,7 +6,7 @@ type HeaderProps = {
 	page : string;
 }
 
-const Header:React.FC<HeaderProps>  = (props) => {
+const Header = (props:HeaderProps) => {
 	const [isOpen, setIsOpen] = useState<boolean>(true);
 	const [isLoad, setIsLoad] = useState<boolean>(false);
 
@@ -22,30 +22,36 @@ const Header:React.FC<HeaderProps>  = (props) => {
 
 	return (
 		<StyledHeader className={isOpen ? "open" : "close"}>
-			<div className={`nav-wrap ${isLoad ? "on" : ""}`}>
+			<div className={`nav-wrap ${isLoad ? "on" : ""}`} aria-hidden={isOpen ? "false" : "true"}>
 				<ul>
 					<li className={props.page === "home" ? "active" : ""}>
-						<Link to="/" tabIndex={isOpen ? 0 : -1} aria-hidden={isOpen ? "false" : "true"}>
+						<Link to="/" tabIndex={isOpen ? 0 : -1}>
 							<span>HOME</span>
-							<i className="fa-solid fa-house"></i>
+							<i className="fa-solid fa-house" aria-hidden="true"></i>
 						</Link>
 					</li>
 					<li className={props.page === "about" ? "active" : ""}>
-						<Link to="/about" tabIndex={isOpen ? 0 : -1} aria-hidden={isOpen ? "false" : "true"}>
+						<Link to="/about" tabIndex={isOpen ? 0 : -1}>
 							<span>ABOUT</span>
-							<i className="fa-solid fa-circle-user"></i>
+							<i className="fa-solid fa-circle-user" aria-hidden="true"></i>
 						</Link>
 					</li>
 					<li className={props.page === "projects" ? "active" : ""}>
-						<Link to="/projects" tabIndex={isOpen ? 0 : -1} aria-hidden={isOpen ? "false" : "true"}>
+						<Link to="/projects" tabIndex={isOpen ? 0 : -1}>
 							<span>PROJECTS</span>
-							<i className="fa-solid fa-list-check"></i>
+							<i className="fa-solid fa-list-check" aria-hidden="true"></i>
+						</Link>
+					</li>
+					<li className={props.page === "memo" ? "active" : ""}>
+						<Link to="/memo" tabIndex={isOpen ? 0 : -1}>
+							<span>NOTE</span>
+							<i className="fa-solid fa-pencil" aria-hidden="true"></i>
 						</Link>
 					</li>
 					<li className={props.page === "github" ? "active" : ""}>
-						<Link to="https://github.com/LEEDAHYE950627/react-portfolio" tabIndex={isOpen ? 0 : -1} aria-hidden={isOpen ? "false" : "true"} target="_blank" aria-label="깃허브 소스보러가기">
+						<Link to="https://github.com/LEEDAHYE950627/react-portfolio" target="_blank" tabIndex={isOpen ? 0 : -1} aria-label="깃허브 소스보러가기">
 							<span>GITHUB</span>
-							<i className="fa-brands fa-github"></i>
+							<i className="fa-brands fa-github" aria-hidden="true"></i>
 						</Link>
 					</li>
 				</ul>
@@ -157,7 +163,10 @@ const StyledHeader = styled.header`
 		width: 44px;
 		height: 44px;
 		background: transparent;
-		-webkit-tap-highlight-color: transparent;
+
+		&:focus {
+			outline: 1px dashed #aaa;
+		}
 
 		.arrow {
 			position: absolute;
@@ -213,7 +222,7 @@ const StyledHeader = styled.header`
 					a {
 						&:hover, &:focus {
 							padding: 13px;
-							box-shadow: 0 0 8px 1px #c174ff;
+							box-shadow: 0 0 8px 1px ${(props) => props.theme.mainTxtColor};
 	
 							span {
 								position: absolute;
