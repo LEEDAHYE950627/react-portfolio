@@ -15,7 +15,7 @@ const PageAni = () => {
 	},[])
 
 	return (
-		<PageAniStyled className={isLoad ? "off" : ""}/>
+		<PageAniStyled className={isLoad ? "off" : ""} aria-hidden={true} />
 	)
 }
 
