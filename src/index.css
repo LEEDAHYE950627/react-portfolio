@@ -109,8 +109,3 @@ main{
 	color: var(--main-color);
 }
 
-body.openPop:not(.is-device) header {
-	right: 27px;
-}
-
-

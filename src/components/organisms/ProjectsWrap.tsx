@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+
 import styled from "styled-components";
 import projectsData from "@/assets/data/projectsData";
 import ProjectsPopup from "@/components/organisms/ProjectsPopup";
@@ -7,13 +8,11 @@ import { IProjectData } from "@/components/organisms/ProjectsPopup";
 const ProjectsWrap = () => {
 	const [isShow, setIsShow] = useState<boolean>(false);
 	const [selectedProject, setSelectedProject] = useState<IProjectData | null>(null);
-	const [previouslyFocusedElement, setPreviouslyFocusedElement] = useState<HTMLElement | null>(null);
-	const [activeButton, setActiveButton] = useState<number | null>(null);
-	const [scrollbarWidth, setScrollbarWidth] = useState(0);
+	const [previousElement, setPreviousElement] = useState<HTMLElement | null>(null);
+	
 	
 	const projectClickHandler = (idx : number) => {
 		setSelectedProject(projectsData.projectList[idx]);
-		setPreviouslyFocusedElement(document.activeElement as HTMLElement);
 		setIsShow(true);
 	}
 
@@ -23,6 +22,7 @@ const ProjectsWrap = () => {
 	}
 
 	const getScrollbarWidth = () => {
+		let scrollbarWidth = 0;
 		const outer = document.createElement('div');
 		outer.style.visibility = 'hidden';
 		outer.style.width = '100px';
@@ -33,17 +33,16 @@ const ProjectsWrap = () => {
 		const inner = document.createElement('div');
 		outer.appendChild(inner);
 
-		const scrollbarWidth = outer.offsetWidth - inner.offsetWidth;
-
+		scrollbarWidth = outer.offsetWidth - inner.offsetWidth;
 		document.body.removeChild(outer);
-
 		return scrollbarWidth;
 	}
 
-	const setScrollCss = () => {
+	const setScrollCss = (width:number) => {
 		const css = `
-			body.openPop:not(.is-device) {position: relative; padding-right: ${scrollbarWidth}px !important;}
-			body.openPop:not(.is-device):after {content: ''; position: fixed; top: 0; right: 0; width: 17px; height: 100%; background-color: #fff;} 
+			body.openPop:not(.is-device) {position: relative; padding-right: ${width}px !important;}
+			body.openPop:not(.is-device):after {content: ''; position: fixed; top: 0; right: 0; width: ${width}px; height: 100%; background-color: #fff;} 
+			body.openPop:not(.is-device) header {right: ${width + 10}px;}
 		`;
 
 		const styleElement = document.createElement('style');
@@ -52,34 +51,26 @@ const ProjectsWrap = () => {
 	}
 
 	useEffect(() => {
+		setScrollCss(getScrollbarWidth());
+	}, [])
+
+	useEffect(() => {
 		if(isShow) {
 			document.body.style.overflow="hidden";
-			setScrollbarWidth(getScrollbarWidth());
-			
 			if(window.innerWidth > 720){
 				document.body.classList.add('openPop');
 			}
 		}else {
+			previousElement?.focus();
 			document.body.style.overflow="auto";
 			if (window.innerWidth > 720){
 				document.body.classList.remove('openPop');
 			}
-			if (previouslyFocusedElement) previouslyFocusedElement.focus();
 		}
-	}, [isShow, previouslyFocusedElement])
-
-	useEffect(() => {
-		setScrollCss();
-		console.log('scrollbarWidth = ' + scrollbarWidth);
-	}, [])
+	}, [isShow, previousElement])
 
 	return (
 		<>
-			{
-				isShow && (
-					<ProjectsPopup onClose={closePopup} projectData={selectedProject} />
-				)
-			}
 			<ProjectsWrapStyled>
 				{
 					projectsData.projectList.map((data, idx) => (
@@ -110,6 +101,7 @@ const ProjectsWrap = () => {
 								<button type="button" 
 									className={'btn-open'}
 									aria-label={`${data.name} 상세보기`}
+									onClick={(e) => setPreviousElement(e.currentTarget)}
 								>
 								</button>
 							</div>
@@ -117,6 +109,12 @@ const ProjectsWrap = () => {
 					))
 				}
 			</ProjectsWrapStyled>
+			
+			{
+				isShow && (
+					<ProjectsPopup onClose={closePopup} projectData={selectedProject} />
+				)
+			}
 		</>
 	);
 }

@@ -25,15 +25,11 @@ type ProjectsPopupProps = {
 	projectData: IProjectData | null;
 }
 
-  const ProjectsPopup: React.FC<ProjectsPopupProps> = ({ onClose, projectData }) => {
+const ProjectsPopup = (props:ProjectsPopupProps) => {
 	const [innerHeight, setInnerHeight] = useState<string>();
 	const popRef = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
-		if (popRef.current){
-			popRef.current.focus();
-		}
-
 		const handleResize = () => {
 			if (window.innerWidth < 721){
 				setInnerHeight(window.innerHeight + 'px');
@@ -44,47 +40,84 @@ type ProjectsPopupProps = {
 		
 		// init
 		handleResize();
-
 		window.addEventListener('resize', handleResize);
-
 		return () => window.removeEventListener('resize', handleResize);
 
 	}, []);
 
-	if (!projectData) {
-		return null;
-	}
+	useEffect(() => {
+		if (!popRef.current) return;
+
+		const selector = ['button:not([disabled])', 'a:not([disabled])', 'div[tabindex="0"'].join(',');
+		const focusibleEl = popRef.current.querySelectorAll<HTMLElement>(selector);
+		const firstEl = focusibleEl[0];
+		const lastEl = focusibleEl[focusibleEl.length - 1];
+
+		// 처음 popup open시 focus 셋팅
+		firstEl?.focus();
+
+		const trapFocus = (e:KeyboardEvent) => {
+			if (e.key != 'Tab') return;
+
+			const activeEl = document.activeElement as HTMLElement | null;
+			if (!activeEl || !popRef.current?.contains(activeEl)){
+				firstEl?.focus();
+			}
+
+			if (e.shiftKey){
+				console.log("shift + tab 중");
+				// shift + tab
+				if (firstEl === activeEl){
+					e.preventDefault();
+					lastEl?.focus();
+				}
+			}else {
+				// tab
+				console.log("tab 중");
+				if (lastEl === activeEl){
+					e.preventDefault();
+					firstEl?.focus();
+				}
+			}
+		}
+
+		document.addEventListener('keydown', trapFocus);
+		return () => document.removeEventListener('keydown', trapFocus);
+
+	}, [])
+
+	if (!props.projectData) return null;
 
 	return (
-		<ProjectsPopupStyled className="pop-wrap" role="dialog" aria-modal="true">
+		<ProjectsPopupStyled className="pop-wrap" role="dialog" aria-modal="true" tabIndex={-1} ref={popRef}>
 			<div className="pop-con" style={{ height : innerHeight}}>
-				<div className="pop-body" ref={popRef} tabIndex={0}>
+				<div className="pop-body" tabIndex={0}>
 					<div className="img">
-						<img src={require(`@/assets/img/${projectData.img}.png`)} alt={`${projectData.orderer} 로고`} style={{width : projectData.img === 'police' ? '36%' : '60%'}}/>
+						<img src={require(`@/assets/img/${props.projectData.img}.png`)} alt={`${props.projectData.orderer} 로고`} style={{width : props.projectData.img === 'police' ? '36%' : '60%'}}/>
 					</div>
 					<div className="info-area">
 						<div className="flag">
-							<span>{ projectData.orderer }</span>
-							<span>{ projectData.type }</span>
+							<span>{ props.projectData.orderer }</span>
+							<span>{ props.projectData.type }</span>
 							{
-								projectData.web ? <span className="color">웹접근성마크획득</span> : null
+								props.projectData.web ? <span className="color">웹접근성마크획득</span> : null
 							}
 						</div>
-						<Heading level="2" className="tit">{ projectData.name }</Heading>
-						<p className="period"><i className="fa-solid fa-calendar-days"></i>{ projectData.period } <span>( { projectData.month } )</span></p>
+						<Heading level="2" className="tit">{ props.projectData.name }</Heading>
+						<p className="period"><i className="fa-solid fa-calendar-days"></i>{ props.projectData.period } <span>( { props.projectData.month } )</span></p>
 					</div>
 					
 					<div className="line-box">
 						<span className="sub-tit">Description</span>
 						<p className="desc">
-							{ projectData.desc }
+							{ props.projectData.desc }
 						</p>
 					</div>
 					<div className="line-box">
 						<span className="sub-tit">Skill Keywords</span>
 						<ul className="skill-list">
 							{
-								projectData.skill.map((item,idx) => (
+								props.projectData.skill.map((item,idx) => (
 									<li key={idx}>{ item }</li>
 								))
 							}
@@ -94,7 +127,7 @@ type ProjectsPopupProps = {
 						<span className="sub-tit">My work</span>
 						<ul className="work-list">
 							{
-								projectData.work.map((data, idx) => (
+								props.projectData.work.map((data, idx) => (
 									<li key={idx}><i className="fa-solid fa-check"></i>{ data }</li>
 								))
 							}
@@ -104,18 +137,19 @@ type ProjectsPopupProps = {
 						<span className="sub-tit">Cooperation</span>
 						<ul className="coop-list">
 							{
-								projectData.cooperation.map((data, idx) => (
+								props.projectData.cooperation.map((data, idx) => (
 									<li key={idx}><span className="line">{ data.title }</span><span>{ data.con }</span></li>
 								))
 							}
 						</ul>
 					</div>
 				</div>
-				<button type="button" className="btn-close" onClick={onClose}><span className="blind">닫기</span></button>
+				<button type="button" className="btn-close" onClick={props.onClose}><span className="blind">닫기</span></button>
 			</div>
 		</ProjectsPopupStyled>
 	)
 }
+
 
 
 const ProjectsPopupStyled = styled.div`
