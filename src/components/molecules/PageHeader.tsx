@@ -8,7 +8,7 @@ type PageHeaderProps = {
 	children? : React.ReactNode;
 }
 
-const PageTitle: React.FC<PageHeaderProps> = (props) => {
+const PageTitle = (props:PageHeaderProps) => {
 	const textSplit = (text: string) => {
 		return text.split('').map((char, idx) => (
 			<span key={idx}>{ char }</span>

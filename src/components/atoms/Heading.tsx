@@ -4,7 +4,7 @@ type HeadingProps = {
 	level : "1" | "2" | "3" | "4" | "5" | "6";
 } & React.HTMLProps<HTMLHeadingElement>
 
-const Heading : React.FC<HeadingProps> = (props) => {
+const Heading = (props:HeadingProps) => {
 	switch (props.level) {
 		case "1" :
 			return <h1 {...props}>{props.children}</h1>;

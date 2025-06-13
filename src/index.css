@@ -28,7 +28,7 @@ html {
 	font-family: SpoqaHanSansNeo, -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
 		"Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
 		'Noto Sans KR','Nanum Gothic', sans-serif;
-	font-weight: 400;
+	font-weight: 300;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
@@ -106,7 +106,7 @@ main{
 	min-height: 100vh;
 }
 .point{
-	color: #8B03FF;
+	color: var(--main-color);
 }
 
 body.openPop:not(.is-device) header {
