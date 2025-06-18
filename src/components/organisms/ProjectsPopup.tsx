@@ -65,7 +65,6 @@ const ProjectsPopup = (props:ProjectsPopupProps) => {
 			}
 
 			if (e.shiftKey){
-				console.log("shift + tab 중");
 				// shift + tab
 				if (firstEl === activeEl){
 					e.preventDefault();
@@ -73,7 +72,6 @@ const ProjectsPopup = (props:ProjectsPopupProps) => {
 				}
 			}else {
 				// tab
-				console.log("tab 중");
 				if (lastEl === activeEl){
 					e.preventDefault();
 					firstEl?.focus();
