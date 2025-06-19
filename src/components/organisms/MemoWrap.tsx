@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import styled from "styled-components";
 import { ui } from '@/assets/js/common';
+import Loading from '@/components/atoms/Loading';
 
 type BlogPost = {
 	title : string;
@@ -10,6 +11,7 @@ type BlogPost = {
 }
 
 const MemoWrap = () => {
+  const [isLoad, setIsLoad] = useState<boolean>(true);
 	const [posts, setPosts] = useState<BlogPost[]>([]);
 
 	useEffect(() => {
@@ -26,7 +28,9 @@ const MemoWrap = () => {
 
 			} catch (error){
 				console.log('블로그 포스팅을 불러오기 실패: ' + error);
-			}
+			} finally {
+        setIsLoad(false);
+      }
 		}
 		fetchRSS()
 	}, []);
@@ -38,24 +42,27 @@ const MemoWrap = () => {
   }
 
 	return (
-		<MemoStyled>
-			<ul>
-				{
-					posts.map((post, idx) => (
-						<li key={idx}>
-							<a href={post.link} target="_blank">
-								<span className="thum">BLOG</span>
-								<div className="cont-box">
-									<span className="date">{ post.pubDate }</span>
-									<span className="tit">{ post.title }</span>
-									<p className="desc">{ post.description }</p>
-								</div>
-							</a>
-						</li>
-					))
-				}
-			</ul>
-		</MemoStyled>
+    <>
+      {isLoad && <Loading/>}
+      <MemoStyled>
+        <ul>
+          {
+            posts.map((post, idx) => (
+              <li key={idx}>
+                <a href={post.link} target="_blank">
+                  <span className="thum">BLOG</span>
+                  <div className="cont-box">
+                    <span className="date">{ post.pubDate }</span>
+                    <span className="tit">{ post.title }</span>
+                    <p className="desc">{ post.description }</p>
+                  </div>
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </MemoStyled>
+    </>
 	);
 }
 

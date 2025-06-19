@@ -1,17 +1,19 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { Link } from "react-router-dom";
 import styled, { keyframes } from "styled-components";
+import Loading from '@/components/atoms/Loading';
 import Heading from "@/components/atoms/Heading";
 import gsap from 'gsap';
 
 const HomeConWrap = () => {
 	const pointsRef = useRef<HTMLDivElement | null>(null);
+  const [isLoad, setIsLoad] = useState<boolean>(true);
 
 	useEffect(() => {
 		if (pointsRef.current){
 			const points = document.querySelectorAll('.intro-area .point');
 
-			const timeline = gsap.timeline({repeat: -1, repeatDelay: 0.7 });
+			const timeline = gsap.timeline({repeat: -1, repeatDelay: 0.7});
 
 			points.forEach((char,idx) => {
 				timeline
@@ -28,58 +30,67 @@ const HomeConWrap = () => {
 					)
 			});
 		}
-	  }, []);
+  }, []);
 
 	return (
-		<StyledHome>
-			<div className="left">
-				<div className="img-box"></div>
-			</div>
-			<div className="right">
-				<div className="intro-area" ref={pointsRef}>
-					<Heading level="2">HELLO EVERYONE! 😁</Heading>
-					<Heading level="1" >I'M {' '}
-						<em aria-label="web publisher">
-							<span className="point">W</span>
-							<span className="point">E</span>
-							<span className="point">B</span>{' '}
-							<span>
-								<span className="point">P</span>
-								<span className="point">U</span>
-								<span className="point">B</span>
-								<span className="point">L</span>
-								<span className="point">I</span>
-								<span className="point">S</span>
-								<span className="point">H</span>
-								<span className="point">E</span>
-								<span className="point">R</span>
-							</span>
-						</em>
-					</Heading>
-					<p>
-						안녕하세요, 퍼블리싱을 사랑하는 이다혜입니다 :D <br className="pc"/>
-						새로운 기술과 프론트 엔드 개발 쪽에도 관심이 많으며, <br className="pc"/>
-						기획팀, 디자인팀, 개발팀, 퍼블리셔 동료들과 커뮤니케이션을 통해 피드백을 주고받는 것을 좋아합니다. <br className="pc"/>
-						새로운 기술에 도전하며 다양한 경험을 할 수 있는 회사에서 일하고 싶습니다.
-					</p>
-				</div>
-				<div className="info-area">
-					<Heading level="2">PERSONAL INFOS</Heading>
-					<ul>
-						<li><span>Name :</span> 이다혜</li>
-						<li><span>Age :</span> 1995.06.27</li>
-						<li><span>Phone :</span> 010-2350-3059</li>
-						<li><span>Email :</span>  dahye950627@naver.com</li>
-					</ul>
-				</div>
-				<div className="btn-area">
-					<Link to="/about">
-						MORE ABOUT ME
-						<i className="fa-solid fa-arrow-right"></i>
-					</Link>
-				</div>
-			</div>
-		</StyledHome>
+    <>
+      {isLoad && <Loading/>}
+      <StyledHome>
+        <div className="left">
+          <div className="img-box">
+            <img 
+            src={require(`@/assets/img/img_main.png`)} 
+            alt="포트폴리오 작성자 이다혜 퍼블리셔 사진" 
+            onLoad={() => setIsLoad(false)}
+            />
+          </div>
+        </div>
+        <div className="right">
+          <div className="intro-area" ref={pointsRef}>
+            <Heading level="2">HELLO EVERYONE! 😁</Heading>
+            <Heading level="1" >I'M {' '}
+              <em aria-label="web publisher">
+                <span className="point">W</span>
+                <span className="point">E</span>
+                <span className="point">B</span>{' '}
+                <span>
+                  <span className="point">P</span>
+                  <span className="point">U</span>
+                  <span className="point">B</span>
+                  <span className="point">L</span>
+                  <span className="point">I</span>
+                  <span className="point">S</span>
+                  <span className="point">H</span>
+                  <span className="point">E</span>
+                  <span className="point">R</span>
+                </span>
+              </em>
+            </Heading>
+            <p>
+              안녕하세요, 퍼블리싱을 사랑하는 이다혜입니다 :D <br className="pc"/>
+              새로운 기술과 프론트 엔드 개발 쪽에도 관심이 많으며, <br className="pc"/>
+              기획팀, 디자인팀, 개발팀, 퍼블리셔 동료들과 커뮤니케이션을 통해 피드백을 주고받는 것을 좋아합니다. <br className="pc"/>
+              새로운 기술에 도전하며 다양한 경험을 할 수 있는 회사에서 일하고 싶습니다.
+            </p>
+          </div>
+          <div className="info-area">
+            <Heading level="2">PERSONAL INFOS</Heading>
+            <ul>
+              <li><span>Name :</span> 이다혜</li>
+              <li><span>Age :</span> 1995.06.27</li>
+              <li><span>Phone :</span> 010-2350-3059</li>
+              <li><span>Email :</span>  dahye950627@naver.com</li>
+            </ul>
+          </div>
+          <div className="btn-area">
+            <Link to="/about">
+              MORE ABOUT ME
+              <i className="fa-solid fa-arrow-right"></i>
+            </Link>
+          </div>
+        </div>
+      </StyledHome>
+    </>
 	)
 }
 
@@ -159,11 +170,17 @@ const StyledHome = styled.main`
 			position: relative;
 			width: 100%;
 			height: 80vh;
-			border-radius: 32px;
 			margin: auto 0;
-			background: url(${(props) => props.theme.mainImgSrc}) no-repeat center center / cover;
-			box-shadow: 0px 2px 11px 7px rgba(0,0,0,0.3);
-			z-index: 2;
+      z-index: 2;
+
+      img {
+        width: 100%;
+        height: 100%;
+        border-radius: 32px;
+        object-fit: cover;
+        object-position: center;
+        box-shadow: 0px 2px 11px 7px rgba(0,0,0,0.3);
+      }
 		}
 	}
 	.right {
