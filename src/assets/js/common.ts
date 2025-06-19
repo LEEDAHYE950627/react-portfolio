@@ -17,7 +17,7 @@ export const ui = {
             }
         },
         // 블로그 날짜 변환
-        getMonthAbbr(month:number){
+        getMonthAbbr(month:number): string {
             const monthAbbr = [
                 "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
             ];
@@ -26,4 +26,10 @@ export const ui = {
     }
 }
 
-ui.fn.init();
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+        ui.fn.init();
+    });
+} else {
+    ui.fn.init();
+}
