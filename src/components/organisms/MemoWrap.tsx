@@ -19,21 +19,23 @@ const MemoWrap = () => {
 					`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent('https://rss.blog.naver.com/dahye950627.xml')}`	
 				);
 				const data = await response.json();
-				setPosts(data.items);
+        data.items.forEach((post:BlogPost) => {
+          post.pubDate = matchDateFormat(post.pubDate);
+        })
+        setPosts(data.items);
+
 			} catch (error){
 				console.log('블로그 포스팅을 불러오기 실패: ' + error);
 			}
 		}
-		fetchRSS();
+		fetchRSS()
 	}, []);
 
-	posts.forEach(post => {
-		const dateArr = post.pubDate.split(' ')[0].split('-');
-
-		// 01,02,03 > Jan, Feb, Mar 변환
-		post.pubDate = ui.fn.getMonthAbbr(parseInt(dateArr[1])) + " " + parseInt(dateArr[2]) + ", " + parseInt(dateArr[0]);
-	})
-
+  const matchDateFormat = (data: string): string => {
+    const dateArr = data.split(' ')[0].split('-');
+    // 01,02,03 > Jan, Feb, Mar 변환
+    return ui.fn.getMonthAbbr(parseInt(dateArr[1])) + " " + parseInt(dateArr[2]) + ", " + parseInt(dateArr[0]);
+  }
 
 	return (
 		<MemoStyled>
@@ -41,7 +43,7 @@ const MemoWrap = () => {
 				{
 					posts.map((post, idx) => (
 						<li key={idx}>
-							<a href={post.link} target="_black">
+							<a href={post.link} target="_blank">
 								<span className="thum">BLOG</span>
 								<div className="cont-box">
 									<span className="date">{ post.pubDate }</span>
