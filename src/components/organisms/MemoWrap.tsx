@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useLayoutEffect } from 'react';
 import styled from "styled-components";
 import { ui } from '@/assets/js/common';
 import Loading from '@/components/atoms/Loading';
@@ -11,10 +11,28 @@ type BlogPost = {
 }
 
 const MemoWrap = () => {
-  const [isLoad, setIsLoad] = useState<boolean>(true);
+  const [isLoad, setIsLoad] = useState<boolean>(false);
+  const [showLoading, setShowLoading] = useState<boolean>(false);
 	const [posts, setPosts] = useState<BlogPost[]>([]);
 
-	useEffect(() => {
+  // 0.3초 이상 로드 지연 될 경우 Loading 노출
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (!isLoad) {
+        setShowLoading(true);
+      }
+    }, 300);
+
+    return () => clearTimeout(timer);
+  }, [isLoad]);
+
+  // Loading 상태값
+  const handleLoading = () => {
+    setIsLoad(true);
+    setShowLoading(false);
+  }
+
+	useLayoutEffect(() => {
 		const fetchRSS = async () => {
 			try {
 				const response = await fetch(
@@ -29,7 +47,7 @@ const MemoWrap = () => {
 			} catch (error){
 				console.log('블로그 포스팅을 불러오기 실패: ' + error);
 			} finally {
-        setIsLoad(false);
+        handleLoading();
       }
 		}
 		fetchRSS()
@@ -43,7 +61,7 @@ const MemoWrap = () => {
 
 	return (
     <>
-      {isLoad && <Loading/>}
+      {showLoading && <Loading/>}
       <MemoStyled>
         <ul>
           {

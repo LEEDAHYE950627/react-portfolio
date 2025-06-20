@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, useLayoutEffect } from 'react';
 import { Link } from "react-router-dom";
 import styled, { keyframes } from "styled-components";
 import Loading from '@/components/atoms/Loading';
@@ -6,8 +6,26 @@ import Heading from "@/components/atoms/Heading";
 import gsap from 'gsap';
 
 const HomeConWrap = () => {
+  const [isLoad, setIsLoad] = useState<boolean>(false);
+  const [showLoading, setShowLoading] = useState<boolean>(false);
 	const pointsRef = useRef<HTMLDivElement | null>(null);
-  const [isLoad, setIsLoad] = useState<boolean>(true);
+
+  // 0.3초 이상 로드 지연 될 경우 Loading 노출
+  useLayoutEffect(() => {
+    const timer = setTimeout(() => {
+      if (!isLoad){
+        setShowLoading(true);
+      }
+    }, 300);
+
+    return () => clearTimeout(timer);
+  }, [isLoad])
+
+  // Loading 상태값
+  const handleLoading = () => {
+    setIsLoad(true);
+    setShowLoading(false);
+  }
 
 	useEffect(() => {
 		if (pointsRef.current){
@@ -34,14 +52,14 @@ const HomeConWrap = () => {
 
 	return (
     <>
-      {isLoad && <Loading/>}
+      {showLoading && <Loading/>}
       <StyledHome>
         <div className="left">
           <div className="img-box">
             <img 
             src={require(`@/assets/img/img_main.png`)} 
             alt="포트폴리오 작성자 이다혜 퍼블리셔 사진" 
-            onLoad={() => setIsLoad(false)}
+            onLoad={() => handleLoading()}
             />
           </div>
         </div>
