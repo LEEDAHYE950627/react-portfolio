@@ -69,7 +69,8 @@ const ProjectsPopup = (props: ProjectsPopupProps) => {
     return () => document.removeEventListener("keydown", trapFocus);
   }, []);
 
-  if (!props.projectData) return null;
+  const { projectData } = props;
+  if (!projectData) return null;
 
   return (
     <ProjectsPopupStyled
@@ -83,39 +84,41 @@ const ProjectsPopup = (props: ProjectsPopupProps) => {
         <div className="pop-body" tabIndex={0}>
           <div className="img">
             <img
-              src={require(`@/assets/img/${props.projectData.img}.png`)}
-              alt={`${props.projectData.orderer} 로고`}
+              src={require(`@/assets/img/${projectData.img}.png`)}
+              alt={`${projectData.orderer} 로고`}
               style={{
-                width: props.projectData.img === "police" ? "36%" : "60%",
+                width: projectData.img === "police" ? "36%" : "60%",
               }}
             />
           </div>
           <div className="info-area">
             <div className="flag">
-              <span>{props.projectData.orderer}</span>
-              <span>{props.projectData.type}</span>
-              {props.projectData.web ? (
+              <span>{projectData.orderer}</span>
+              <span>{projectData.type}</span>
+              {projectData.web ? (
                 <span className="color">웹접근성마크획득</span>
               ) : null}
             </div>
             <Heading level="2" className="tit">
-              {props.projectData.name}
+              {projectData.name}
             </Heading>
-            <p className="period">
-              <i className="fa-solid fa-calendar-days"></i>
-              {props.projectData.period}{" "}
-              <span>( {props.projectData.month} )</span>
-            </p>
+            {projectData.period.map((item, idx) => (
+              <p className="period" key={idx}>
+                <i className="fa-solid fa-calendar-days"></i>
+                {item}{" "}
+                <span>( {projectData.month[idx]} )</span>
+              </p>
+            ))}
           </div>
 
           <div className="line-box">
             <span className="sub-tit">Description</span>
-            <p className="desc">{props.projectData.desc}</p>
+            <p className="desc">{projectData.desc}</p>
           </div>
           <div className="line-box">
             <span className="sub-tit">Skill Keywords</span>
             <ul className="skill-list">
-              {props.projectData.skill.map((item, idx) => (
+              {projectData.skill.map((item, idx) => (
                 <li key={idx}>{item}</li>
               ))}
             </ul>
@@ -123,7 +126,7 @@ const ProjectsPopup = (props: ProjectsPopupProps) => {
           <div className="line-box">
             <span className="sub-tit">My work</span>
             <ul className="work-list">
-              {props.projectData.work.map((data, idx) => (
+              {projectData.work.map((data, idx) => (
                 <li key={idx}>
                   <i className="fa-solid fa-check"></i>
                   {data}
@@ -134,7 +137,7 @@ const ProjectsPopup = (props: ProjectsPopupProps) => {
           <div className="line-box">
             <span className="sub-tit">Cooperation</span>
             <ul className="coop-list">
-              {props.projectData.cooperation.map((data, idx) => (
+              {projectData.cooperation.map((data, idx) => (
                 <li key={idx}>
                   <span className="line">{data.title}</span>
                   <span>{data.con}</span>
