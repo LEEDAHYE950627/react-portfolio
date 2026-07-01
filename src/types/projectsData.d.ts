@@ -24,8 +24,8 @@ export interface IProject {
   web: boolean;
   type: string;
   employment?: string;
-  period: string;
-  month: string;
+  period: string[];
+  month: string[];
   desc: string;
   skill: string[];
   company: string;

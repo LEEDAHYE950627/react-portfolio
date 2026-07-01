@@ -106,13 +106,15 @@ const ProjectsWrap = () => {
                   ) : null}
                 </div>
                 <strong className="tit">{data.name}</strong>
-                <p className="period">
-                  <i
-                    className="fa-solid fa-calendar-days"
-                    aria-hidden="true"
-                  ></i>{" "}
-                  {data.period} <span>( {data.month} )</span>
-                </p>
+                {data.period.map((item, idx) => (
+                  <p className="period">
+                    <i
+                      className="fa-solid fa-calendar-days"
+                      aria-hidden="true"
+                    ></i>{" "}
+                    {item} <span>( {data.month[idx]} )</span>
+                  </p>
+                ))}
                 <p className="desc">{data.desc}</p>
               </div>
               <ul className="skill-list">
