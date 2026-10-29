@@ -43,7 +43,7 @@ const ProjectsPopup = (props: ProjectsPopupProps) => {
     firstEl?.focus();
 
     const trapFocus = (e: KeyboardEvent) => {
-      if (e.key != "Tab") return;
+      if (e.key !== "Tab") return;
 
       const activeEl = document.activeElement as HTMLElement | null;
       if (!activeEl || !popRef.current?.contains(activeEl)) {
@@ -94,9 +94,9 @@ const ProjectsPopup = (props: ProjectsPopupProps) => {
           <div className="info-area">
             <div className="flag">
               <span>{projectData.orderer}</span>
-              <span>{projectData.type}</span>
+              <span className={projectData.type === '운영' ? 'type-oper' : 'type-build'}>{projectData.type}</span>
               {projectData.web ? (
-                <span className="color">웹접근성마크획득</span>
+                <span className="type-mark">웹접근성마크획득</span>
               ) : null}
             </div>
             <Heading level="2" className="tit">
@@ -221,8 +221,16 @@ const ProjectsPopupStyled = styled.div`
             background: #323232;
             font-size: 14px;
           }
-          .color {
+          .type-mark {
             background: ${(props) => props.theme.mainColor};
+          }
+          .type-build {
+            background: #304B68;
+            color: #E5F2FF;
+          }
+          .type-oper {
+            background: #443328;
+            color: #EAC09A;
           }
         }
         .tit {
@@ -295,6 +303,7 @@ const ProjectsPopupStyled = styled.div`
           padding: 5px 12px 5px 30px;
           border-radius: 6px;
           background: rgba(50, 50, 50, 0.7);
+          word-break: keep-all;
 
           & + li {
             margin-top: 7px;

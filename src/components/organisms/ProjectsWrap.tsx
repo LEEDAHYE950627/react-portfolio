@@ -95,14 +95,14 @@ const ProjectsWrap = () => {
               <div className="info-area">
                 <div className="flag">
                   <span>{data.orderer}</span>
-                  <span>{data.type}</span>
+                  <span className={data.type === '운영' ? 'type-oper' : 'type-build'}>{data.type}</span>
                   {data.employment !== "" && data.employment !== undefined ? (
                     <span>{data.employment}</span>
                   ) : (
                     ""
                   )}
                   {data.web ? (
-                    <span className="color">웹접근성마크획득</span>
+                    <span className="type-mark">웹접근성마크획득</span>
                   ) : null}
                 </div>
                 <strong className="tit">{data.name}</strong>
@@ -171,8 +171,16 @@ const ProjectsWrapStyled = styled.div`
             background: #323232;
             font-size: 11px;
           }
-          .color {
+          .type-mark {
             background: ${(props) => props.theme.mainColor};
+          }
+          .type-build {
+            background: #304B68;
+            color: #E5F2FF;
+          }
+          .type-oper {
+            background: #443328;
+            color: #EAC09A;
           }
         }
         .tit {
