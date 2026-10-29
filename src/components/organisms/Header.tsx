@@ -11,13 +11,11 @@ const Header = (props:HeaderProps) => {
 	const [isLoad, setIsLoad] = useState<boolean>(false);
 
 	useEffect(() => {
-		setInterval(() => {
+		const timerId = window.setTimeout(() => {
 			setIsLoad(true);
 		}, 500);
 		
-		return () => {
-			setIsLoad(false);
-		}
+		return () => window.clearTimeout(timerId);
 	}, []);
 
 	return (
