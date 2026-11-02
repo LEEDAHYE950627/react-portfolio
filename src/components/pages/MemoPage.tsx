@@ -60,37 +60,4 @@ const MemoPageStyled = styled.main`
 	}
 `;
 
-const SectionHeaderStyled = styled.div`
-	padding-bottom: 50px;
-	text-align: center;
-
-	h2 {
-		position: relative;
-		font-size: 26px;
-		font-weight: 700;
-		text-transform: uppercase;
-		line-height: 1.2;
-		letter-spacing: 1px;
-
-		&:before {
-			content: '';
-			position: absolute;
-			bottom: -15px;
-			left: 50%;
-			width: 70px;
-			height: 2px;
-			transform: translateX(-50%);
-			background: linear-gradient(to right, #ff69b4, #8B03FF);
-		}
-	}
-
-	@media ${(props) => props.theme.mobile} {
-		padding: 0 0 40px;
-
-		h2 {
-			font-size: 24px;
-		}
-	}
-`;
-
 export default MemoPage;
