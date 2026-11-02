@@ -1,9 +1,21 @@
 {
   "skillList": [
     {
-      "label": "HTML/CSS",
+      "label": "HTML5",
       "rank": "상",
       "icon": "fa-brands fa-html5",
+      "percent": ""
+    },
+    {
+      "label": "CSS3",
+      "rank": "상",
+      "icon": "fa-brands fa-css",
+      "percent": ""
+    },
+    {
+      "label": "SCSS",
+      "rank": "중",
+      "icon": "fa-brands fa-sass",
       "percent": ""
     },
     {
