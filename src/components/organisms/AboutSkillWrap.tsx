@@ -80,7 +80,7 @@ const AboutSkillStyled = styled.div`
   flex-wrap: wrap;
 
   .skill-box {
-    width: 33.3333%;
+    width: 25%;
     padding: 12px;
 
     .inner {
@@ -88,7 +88,7 @@ const AboutSkillStyled = styled.div`
       justify-content: space-between;
       align-items: center;
       height: 100%;
-      padding: 12px 20px;
+      padding: 12px 18px;
       border: 1px solid rgba(37, 37, 37);
       border-radius: 6px;
       background: rgba(30, 30, 30);
@@ -98,13 +98,13 @@ const AboutSkillStyled = styled.div`
         align-items: center;
 
         i {
-          min-width: 45px;
-          font-size: 42px;
+          max-width: 40px;
+          font-size: 30px;
           color: ${(props) => props.theme.mainColor};
         }
         span {
           display: inline-block;
-          margin-left: 10px;
+          margin-left: 12px;
           font-size: 18px;
           font-weight: 500;
         }
@@ -143,7 +143,7 @@ const AboutSkillStyled = styled.div`
 
     &:last-child {
       .inner .left i {
-        font-size: 36px;
+        font-size: 26px;
       }
     }
   }
