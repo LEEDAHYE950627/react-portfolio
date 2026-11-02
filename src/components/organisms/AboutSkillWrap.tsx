@@ -105,7 +105,7 @@ const AboutSkillStyled = styled.div`
         span {
           display: inline-block;
           margin-left: 12px;
-          font-size: 18px;
+          font-size: 16px;
           font-weight: 500;
         }
       }
