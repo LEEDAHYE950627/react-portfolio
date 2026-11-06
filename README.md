@@ -63,6 +63,8 @@ npm start
 
 `npm ci`는 커밋된 잠금 파일을 기준으로 의존성을 설치합니다. 개발 서버 주소는 실행 후 터미널에 표시되며, 기본 포트는 `3000`입니다. 경로가 포함되어 표시되면 `/react-portfolio/`까지 포함한 주소로 접속합니다.
 
+<br>
+
 ## 4. 명령어
 
 | 명령어 | 설명 |
@@ -74,6 +76,7 @@ npm start
 | `npx eslint src --ext .ts,.tsx --no-cache` | TypeScript / TSX 코드 린트 검사 |
 | `npm run deploy` | predeploy 빌드 후 `build/`를 GitHub Pages용 브랜치에 게시 |
 
+<br>
 
 ## 5. 프로젝트 구조
 
@@ -108,6 +111,8 @@ react-portfolio/
 └── package-lock.json          # 설치 버전 고정
 ```
 
+<br>
+
 ## 6. 개발 가이드
 
 ### 컴포넌트와 라우팅
@@ -119,6 +124,8 @@ react-portfolio/
 1. `src/components/pages/`에 페이지 컴포넌트를 작성합니다.
 2. `src/App.tsx`에 경로를 등록합니다.
 3. `src/components/organisms/Header.tsx`에 메뉴와 활성 상태를 연결합니다.
+
+<br>
 
 ### 7. 스타일과 반응형
 
@@ -142,6 +149,7 @@ const Example = styled.div`
 `;
 ```
 
+<br>
 
 ### 8. 프로젝트 추가
 
